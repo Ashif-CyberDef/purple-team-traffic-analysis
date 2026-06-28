@@ -20,6 +20,7 @@ RoleMachineNotes🖥️ Analysis Host (Sniffer)Windows 11 HostWireshark listenin
 Step 1 — Automated Network Reconnaissance
 
 An aggressive SYN stealth port scan was executed from Kali Linux to enumerate open ports and identify available services on the target.
+
 <img width="1600" height="832" alt="WhatsApp Image 2026-06-28 at 1 34 30 PM" src="https://github.com/user-attachments/assets/e46e8651-179d-4186-9c70-ad140dbc8883" />
 
 bash:sudo nmap -sS -p 1-1000 [Target_IP]
@@ -46,6 +47,7 @@ Switching to the role of a SOC Analyst, the packet capture (.pcap) recorded from
 Finding 1 — Port Scan Signature Identified
 
 Wireshark Display Filter:
+
 <img width="1285" height="679" alt="Screenshot 2026-06-28 134939" src="https://github.com/user-attachments/assets/97b1b79e-3436-41a8-9870-f7b29f5e1275" />
 
 tcp.flags.syn == 1 and tcp.flags.ack == 0
@@ -58,6 +60,7 @@ The capture revealed a massive, rapid influx of TCP SYN packets originating from
 Finding 2 — Cleartext Credentials Extracted
 
 Wireshark Display Filter:
+
 <img width="1563" height="589" alt="Screenshot 2026-06-28 134907" src="https://github.com/user-attachments/assets/ba3cb0b5-ad5f-4394-ac32-23d9b6ebe268" />
 
 ftp
@@ -67,6 +70,7 @@ Secondary filter used:
 ftp.command == "USER" or ftp.command == "PASS"
 
 Technical Findings:
+
 <img width="841" height="487" alt="Screenshot 2026-06-28 135426" src="https://github.com/user-attachments/assets/23a8623a-2875-4ea2-89a1-afd6a1e93ada" />
 
 Because legacy FTP transmits all data in plaintext with zero encryption, filtering for FTP packets immediately revealed the raw authentication exchange. Using Follow → TCP Stream, the complete session was reconstructed — exposing the exact username and password submitted during login. No decryption was needed; the credentials were fully readable by anyone on the same network segment.
@@ -101,20 +105,6 @@ Any cleartext protocol traffic carrying credential strings
 🧰 Tools & Technologies Used
 
 ToolPurposeKali Linux 2025.3Offensive operations platformNmapSYN stealth port scanning and service enumerationFTP ClientCleartext credential transmission simulationMetasploitable2Intentionally vulnerable target nodeWiresharkPacket capture, traffic analysis, IoC identificationVMware WorkstationIsolated lab environment (Host-Only Network)
-
-
-📁 Repository Structure
-
-purple-team-lab/
-│
-├── README.md               # This file — full lab documentation
-├── captures/
-│   └── lab_capture.pcap    # Wireshark packet capture file
-└── screenshots/
-    ├── nmap_scan.png        # Nmap scan output
-    ├── syn_flood_filter.png # Wireshark SYN filter view
-    └── ftp_stream.png       # Reconstructed FTP TCP stream
-
 
 👤 Author
 
