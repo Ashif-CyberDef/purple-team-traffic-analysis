@@ -30,6 +30,7 @@ Objective: Map the attack surface before selecting an exploitation vector.
 Step 2 — Unencrypted Credential Harvesting
 
 Upon discovering port 21 (FTP) was active, an unencrypted connection was initiated to simulate a real-world authentication attempt — passing credentials in cleartext across the wire.
+
 <img width="546" height="283" alt="Screenshot 2026-06-28 143358" src="https://github.com/user-attachments/assets/8ae46cc3-826e-45c4-9dfc-bc90de8d208f" />
 
 bash:ftp [Target_IP]
