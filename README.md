@@ -1,4 +1,4 @@
-<img width="1600" height="832" alt="WhatsApp Image 2026-06-28 at 1 34 30 PM" src="https://github.com/user-attachments/assets/160b2bd8-80c0-416f-ae99-ba49ba4bb101" />📌 Project Overview
+Project Overview
 
 This project demonstrates a hands-on Purple Team exercise conducted in an isolated virtual environment. By playing the role of both Attacker (Kali Linux) and Defender/Analyst (Wireshark on a Windows Host), I simulated an internal reconnaissance and credential harvesting attack vector — then analyzed its full packet-level footprint and documented strategic mitigations.
 
